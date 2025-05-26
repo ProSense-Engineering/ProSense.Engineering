@@ -504,43 +504,396 @@
                     <p>Whether you're a local retailer looking to optimize inventory management, a service provider wanting to automate client communications, or a growing manufacturer needing better production analytics, we have the experience and local knowledge to make it happen.</p>
                 </div>
                 
-                <svg class="about-svg" viewBox="0 0 400 300">
-                    <!-- Data transformation visualization -->
+                <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
                     <defs>
+                        <!-- Gradients -->
                         <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" style="stop-color:#ff6b35"/>
+                            <stop offset="50%" style="stop-color:#ffa500"/>
                             <stop offset="100%" style="stop-color:#00a6a6"/>
                         </linearGradient>
-                    </defs>
-                    
-                    <!-- Input Data -->
-                    <rect x="20" y="50" width="80" height="60" rx="10" fill="rgba(255,107,53,0.3)" stroke="#ff6b35" stroke-width="2"/>
-                    <text x="60" y="85" text-anchor="middle" fill="#ff6b35" font-size="12">Raw Data</text>
-                    
-                    <!-- Processing -->
-                    <rect x="160" y="100" width="80" height="100" rx="10" fill="rgba(0,166,166,0.3)" stroke="#00a6a6" stroke-width="2"/>
-                    <text x="200" y="155" text-anchor="middle" fill="#00a6a6" font-size="12">ETL Process</text>
-                    
-                    <!-- Output -->
-                    <rect x="300" y="75" width="80" height="50" rx="10" fill="rgba(0,102,204,0.3)" stroke="#0066cc" stroke-width="2"/>
-                    <text x="340" y="105" text-anchor="middle" fill="#0066cc" font-size="12">Insights</text>
-                    
-                    <!-- Flow arrows -->
-                    <path class="data-flow" d="M100,80 L160,130" marker-end="url(#arrowhead)" />
-                    <path class="data-flow" d="M240,150 L300,100" marker-end="url(#arrowhead)" />
-                    
-                    <!-- Arrow marker for service icons -->
-                    <defs>
-                        <marker id="smallArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                            <polygon points="0 0, 8 3, 0 6" fill="currentColor"/>
+                        
+                        <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#4facfe"/>
+                            <stop offset="100%" style="stop-color:#00f2fe"/>
+                        </linearGradient>
+                        
+                        <!-- Arrow markers -->
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#fff"/>
                         </marker>
+                        
+                        <!-- Glow filter -->
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        
+                        <!-- Pulse animation -->
+                        <filter id="pulse">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
                     </defs>
                     
-                    <!-- Animated data points -->
-                    <circle cx="130" cy="80" r="3" fill="#ff6b35">
-                        <animate attributeName="cx" values="130;160;240;270" dur="3s" repeatCount="indefinite"/>
-                        <animate attributeName="cy" values="80;130;150;100" dur="3s" repeatCount="indefinite"/>
-                    </circle>
+                    <!-- Raw Data Sources -->
+                    <g id="raw-sources">
+                        <!-- Secretary (PDF source) -->
+                        <rect x="30" y="80" width="100" height="70" rx="8" fill="rgba(220,53,69,0.2)" stroke="#dc3545" stroke-width="2">
+                            <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Secretary icon -->
+                        <g transform="translate(80, 115)">
+                            <!-- Person silhouette -->
+                            <circle cx="0" cy="-15" r="8" fill="#dc3545"/>
+                            <rect x="-12" y="-5" width="24" height="20" rx="3" fill="#dc3545"/>
+                        </g>
+                        
+                        <!-- Industrial Machine (CSV source) -->
+                        <rect x="30" y="180" width="100" height="70" rx="8" fill="rgba(40,167,69,0.2)" stroke="#28a745" stroke-width="2">
+                            <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Machining Center icon -->
+                        <g transform="translate(80, 215)">
+                            <!-- Base -->
+                            <rect x="-25" y="0" width="50" height="12" rx="2" fill="#28a745"/>
+                            <!-- Main body -->
+                            <rect x="-20" y="-20" width="40" height="20" rx="2" fill="#28a745"/>
+                            <!-- Spindle -->
+                            <rect x="-3" y="-35" width="6" height="15" fill="#ccc">
+                                <animateTransform attributeName="transform" type="rotate" values="0 0 -27.5;360 0 -27.5" dur="1s" repeatCount="indefinite"/>
+                            </rect>
+                            <!-- Press arm -->
+                            <rect x="-15" y="-30" width="30" height="4" fill="#999">
+                                <animate attributeName="y" values="-30;-25;-30" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                            <!-- Control panel -->
+                            <rect x="-18" y="-15" width="12" height="8" rx="1" fill="#333"/>
+                            <circle cx="-15" cy="-11" r="1" fill="#00ff00">
+                                <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="-9" cy="-11" r="1" fill="#ff0000">
+                                <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <!-- Work piece -->
+                            <rect x="8" y="-8" width="8" height="4" fill="#888">
+                                <animate attributeName="fill" values="#888;#ffa500;#888" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                        </g>
+                        
+                        <!-- Line Lead (Excel source) -->
+                        <rect x="30" y="280" width="100" height="70" rx="8" fill="rgba(23,162,184,0.2)" stroke="#17a2b8" stroke-width="2">
+                            <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Line Lead icon -->
+                        <g transform="translate(80, 315)">
+                            <!-- Person with hard hat -->
+                            <circle cx="0" cy="-15" r="8" fill="#17a2b8"/>
+                            <rect x="-10" y="-23" width="20" height="8" rx="4" fill="#ffc107"/>
+                            <rect x="-12" y="-5" width="24" height="20" rx="3" fill="#17a2b8"/>
+                        </g>
+                    </g>
+                    
+                    <!-- Processing Icons -->
+                    <g id="processing-icons">
+                        <!-- AI Processing -->
+                        <circle cx="220" cy="115" r="20" fill="rgba(255,193,7,0.3)" stroke="#ffc107" stroke-width="2"/>
+                        <text x="220" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffc107">AI</text>
+                        
+                        <!-- Python Processing -->
+                        <circle cx="220" cy="215" r="20" fill="rgba(108,117,125,0.3)" stroke="#6c757d" stroke-width="2"/> 
+                        <text x="220" y="220" text-anchor="middle" font-size="8" font-weight="bold" fill="#6c757d">Python</text>
+                        
+                        <!-- VBA Processing -->
+                        <circle cx="220" cy="315" r="20" fill="rgba(111,66,193,0.3)" stroke="#6f42c1" stroke-width="2"/>
+                        <text x="220" y="320" text-anchor="middle" font-size="8" font-weight="bold" fill="#6f42c1">VBA</text>
+                    </g>
+                    
+                    <!-- Database -->
+                    <g id="database">
+                        <rect x="320" y="180" width="120" height="140" rx="10" fill="rgba(0,166,166,0.2)" stroke="#00a6a6" stroke-width="3">
+                            <animate attributeName="stroke-width" values="2;4;2" dur="3s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Database server icon -->
+                        <g transform="translate(380, 250)">
+                            <rect x="-30" y="-40" width="60" height="50" rx="5" fill="#00a6a6"/>
+                            <ellipse cx="0" cy="-40" rx="30" ry="6" fill="#66d9d9"/>
+                            <ellipse cx="0" cy="-25" rx="30" ry="6" fill="#66d9d9"/>
+                            <ellipse cx="0" cy="-10" rx="30" ry="6" fill="#66d9d9"/>
+                            <ellipse cx="0" cy="5" rx="30" ry="6" fill="#66d9d9"/>
+                            <!-- Blinking lights -->
+                            <circle cx="-20" cy="-35" r="2" fill="#00ff00">
+                                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="-12" cy="-35" r="2" fill="#ff0000">
+                                <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                    </g>
+                    
+                    <!-- Output Systems -->
+                    <g id="outputs">
+                        <!-- Visualization -->
+                        <rect x="520" y="80" width="120" height="80" rx="8" fill="rgba(0,102,204,0.2)" stroke="#0066cc" stroke-width="2">
+                            <animate attributeName="fill-opacity" values="0.2;0.4;0.2" dur="2s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Chart icon -->
+                        <g transform="translate(580, 120)">
+                            <rect x="-25" y="-20" width="50" height="30" rx="2" fill="none" stroke="#0066cc" stroke-width="2"/>
+                            <!-- Animated bar chart -->
+                            <rect x="-20" y="-5" width="6" height="15" fill="#0066cc">
+                                <animate attributeName="height" values="15;25;15" dur="3s" repeatCount="indefinite" begin="4s"/>
+                                <animate attributeName="y" values="-5;-15;-5" dur="3s" repeatCount="indefinite" begin="4s"/>
+                            </rect>
+                            <rect x="-10" y="-12" width="6" height="22" fill="#0066cc">
+                                <animate attributeName="height" values="22;30;22" dur="3s" repeatCount="indefinite" begin="4.5s"/>
+                                <animate attributeName="y" values="-12;-20;-12" dur="3s" repeatCount="indefinite" begin="4.5s"/>
+                            </rect>
+                            <rect x="0" y="-8" width="6" height="18" fill="#0066cc">
+                                <animate attributeName="height" values="18;28;18" dur="3s" repeatCount="indefinite" begin="5s"/>
+                                <animate attributeName="y" values="-8;-18;-8" dur="3s" repeatCount="indefinite" begin="5s"/>
+                            </rect>
+                            <rect x="10" y="-15" width="6" height="25" fill="#0066cc">
+                                <animate attributeName="height" values="25;35;25" dur="3s" repeatCount="indefinite" begin="5.5s"/>
+                                <animate attributeName="y" values="-15;-25;-15" dur="3s" repeatCount="indefinite" begin="5.5s"/>
+                            </rect>
+                            <!-- Animated line chart -->
+                            <polyline points="-20,-15 -10,-8 0,-12 10,-5" fill="none" stroke="#ff6600" stroke-width="2">
+                                <animate attributeName="points" values="-20,-15 -10,-8 0,-12 10,-5;-20,-20 -10,-12 0,-18 10,-10;-20,-15 -10,-8 0,-12 10,-5" dur="3s" repeatCount="indefinite" begin="4s"/>
+                            </polyline>
+                        </g>
+                        
+                        <!-- Robot Arm Actions -->
+                        <rect x="520" y="200" width="120" height="80" rx="8" fill="rgba(255,107,53,0.2)" stroke="#ff6b35" stroke-width="2">
+                            <animate attributeName="fill-opacity" values="0.2;0.4;0.2" dur="2.2s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Robot arm icon -->
+                        <g transform="translate(580, 240)">
+                            <!-- Base -->
+                            <rect x="-8" y="12" width="16" height="8" rx="2" fill="#ff6b35"/>
+                            <!-- Lower arm -->
+                            <rect x="-2" y="-8" width="4" height="20" rx="2" fill="#ff6b35">
+                                <animateTransform attributeName="transform" type="rotate" values="0 0 2;25 0 2;-20 0 2;15 0 2;-30 0 2;0 0 2" dur="8s" repeatCount="indefinite" begin="6s"/>
+                            </rect>
+                            <!-- Upper arm -->
+                            <g transform="translate(0, -8)">
+                                <rect x="-2" y="-18" width="4" height="18" rx="2" fill="#ff6b35">
+                                    <animateTransform attributeName="transform" type="rotate" values="0 0 0;-45 0 0;30 0 0;-15 0 0;45 0 0;0 0 0" dur="8s" repeatCount="indefinite" begin="6s"/>
+                                </rect>
+                                <!-- End effector -->
+                                <g transform="translate(0, -18)">
+                                    <rect x="-3" y="-6" width="6" height="6" rx="1" fill="#999">
+                                        <animateTransform attributeName="transform" type="rotate" values="0 0 0;90 0 0;-45 0 0;180 0 0;-90 0 0;0 0 0" dur="8s" repeatCount="indefinite" begin="6s"/>
+                                    </animateTransform>
+                                    <!-- Gripper -->
+                                    <rect x="-1" y="-8" width="2" height="4" fill="#ccc">
+                                        <animate attributeName="width" values="2;6;2;5;2;4;2" dur="8s" repeatCount="indefinite" begin="6s"/>
+                                        <animate attributeName="x" values="-1;-3;-1;-2.5;-1;-2;-1" dur="8s" repeatCount="indefinite" begin="6s"/>
+                                    </rect>
+                                </g>
+                            </g>
+                            <!-- Status lights -->
+                            <circle cx="-5" cy="16" r="1" fill="#00ff00">
+                                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="5" cy="16" r="1" fill="#ff0000">
+                                <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="0" cy="16" r="1" fill="#ffff00">
+                                <animate attributeName="opacity" values="0;0;1;0;0;1;0" dur="8s" repeatCount="indefinite" begin="6s"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- Customer Service Rep -->
+                        <rect x="520" y="320" width="120" height="80" rx="8" fill="rgba(138,43,226,0.2)" stroke="#8a2be2" stroke-width="2">
+                            <animate attributeName="fill-opacity" values="0.2;0.4;0.2" dur="2.8s" repeatCount="indefinite"/>
+                        </rect>
+                        <!-- Customer service rep icon -->
+                        <g transform="translate(580, 360)">
+                            <!-- Service rep (left side) -->
+                            <g transform="translate(-15, 0)">
+                                <circle cx="0" cy="-20" r="6" fill="#8a2be2"/>
+                                <rect x="-8" y="-10" width="16" height="18" rx="2" fill="#8a2be2"/>
+                                <!-- Headset -->
+                                <rect x="-8" y="-25" width="16" height="4" rx="2" fill="#333"/>
+                                <circle cx="-8" cy="-23" r="2" fill="#333"/>
+                                <!-- Speech bubble -->
+                                <ellipse cx="-5" cy="-35" rx="12" ry="8" fill="#fff" stroke="#8a2be2" stroke-width="1"/>
+                                <text x="-5" y="-33" text-anchor="middle" font-size="6" fill="#8a2be2">Hello!</text>
+                                <polygon points="-8,-27 -5,-25 -11,-25" fill="#fff"/>
+                            </g>
+                            
+                            <!-- Customer (right side) -->
+                            <g transform="translate(15, 0)">
+                                <circle cx="0" cy="-20" r="6" fill="#666"/>
+                                <rect x="-8" y="-10" width="16" height="18" rx="2" fill="#666"/>
+                                <!-- Speech bubble -->
+                                <ellipse cx="5" cy="-35" rx="12" ry="8" fill="#fff" stroke="#666" stroke-width="1">
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+                                </ellipse>
+                                <text x="5" y="-33" text-anchor="middle" font-size="6" fill="#666">
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+                                    Help?
+                                </text>
+                                <polygon points="8,-27 5,-25 11,-25" fill="#fff">
+                                    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+                                </polygon>
+                            </g>
+                            
+                            <!-- Connection lines between them -->
+                            <line x1="-7" y1="-5" x2="7" y2="-5" stroke="#8a2be2" stroke-width="1" stroke-dasharray="2,2">
+                                <animate attributeName="stroke-dashoffset" values="0;4" dur="1s" repeatCount="indefinite"/>
+                            </line>
+                        </g>
+                    </g>
+                    
+                    <!-- Flow Arrows -->
+                    <g id="flow-arrows" stroke="#fff" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+                        <!-- From sources to processing -->
+                        <path d="M130,115 L200,115"/>
+                        <path d="M130,215 L200,215"/>
+                        <path d="M130,315 L200,315"/>
+                        
+                        <!-- From processing to database -->
+                        <path d="M240,115 L320,220"/>
+                        <path d="M240,215 L320,240"/>
+                        <path d="M240,315 L320,280"/>
+                        
+                        <!-- From database to outputs -->
+                        <path d="M440,230 L520,120"/>
+                        <path d="M440,250 L520,240"/>
+                        <path d="M440,270 L520,360"/>
+                    </g>
+                    
+                    <!-- Animated Data Particles -->
+                    <g id="data-particles">
+                        <!-- PDF Data Flow (file format until processing node) -->
+                        <g>
+                            <rect x="125" y="110" width="10" height="12" rx="1" fill="#dc3545" filter="url(#glow)">
+                                <animate attributeName="x" values="125;195" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="y" values="110;110" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                            <text x="130" y="120" font-size="8" fill="#fff" font-weight="bold">PDF
+                                <animate attributeName="x" values="130;200" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="y" values="120;120" dur="2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/>
+                            </text>
+                        </g>
+                        
+                        <!-- CSV Data Flow (file format until processing node) -->
+                        <g>
+                            <rect x="125" y="210" width="10" height="12" rx="1" fill="#28a745" filter="url(#glow)">
+                                <animate attributeName="x" values="125;195" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="y" values="210;210" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="opacity" values="1;0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                            </rect>
+                            <text x="130" y="220" font-size="8" fill="#fff" font-weight="bold">CSV
+                                <animate attributeName="x" values="130;200" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="y" values="220;220" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                                <animate attributeName="opacity" values="1;0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+                            </text>
+                        </g>
+                        
+                        <!-- Excel Data Flow (file format until processing node) -->
+                        <g>
+                            <rect x="125" y="310" width="10" height="12" rx="1" fill="#17a2b8" filter="url(#glow)">
+                                <animate attributeName="x" values="125;195" dur="3s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="y" values="310;310" dur="3s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="opacity" values="1;0" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            </rect>
+                            <text x="130" y="320" font-size="8" fill="#333" font-weight="bold">XLS
+                                <animate attributeName="x" values="130;200" dur="3s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="y" values="320;320" dur="3s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="opacity" values="1;0" dur="3s" repeatCount="indefinite" begin="2s"/>
+                            </text>
+                        </g>
+                        
+                        <!-- Binary Flow from AI processing to database (stops at database) -->
+                        <g>
+                            <text x="240" y="120" font-size="12" fill="#00ff00" font-weight="bold" filter="url(#glow)">1010110
+                                <animate attributeName="x" values="240;315" dur="2s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="y" values="120;220" dur="2s" repeatCount="indefinite" begin="2s"/>
+                                <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="2s"/>
+                            </text>
+                        </g>
+                        
+                        <!-- Binary Flow from Python processing to database (stops at database) -->
+                        <g>
+                            <text x="240" y="220" font-size="12" fill="#00ff00" font-weight="bold" filter="url(#glow)">0110101
+                                <animate attributeName="x" values="240;315" dur="2s" repeatCount="indefinite" begin="3.5s"/>
+                                <animate attributeName="y" values="220;240" dur="2s" repeatCount="indefinite" begin="3.5s"/>
+                                <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="3.5s"/>
+                            </text>
+                        </g>
+                        
+                        <!-- Binary Flow from VBA processing to database (stops at database) -->
+                        <g>
+                            <text x="240" y="320" font-size="12" fill="#00ff00" font-weight="bold" filter="url(#glow)">1110010
+                                <animate attributeName="x" values="240;315" dur="2s" repeatCount="indefinite" begin="5s"/>
+                                <animate attributeName="y" values="320;275" dur="2s" repeatCount="indefinite" begin="5s"/>
+                                <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="5s"/>
+                            </text>
+                        </g>
+                        
+                        <!-- Continuous binary streams from database -->
+                        <g>
+                            <text x="440" y="225" font-size="10" fill="#ffffff" font-weight="bold" filter="url(#glow)">01101
+                                <animate attributeName="x" values="440;515" dur="1.5s" repeatCount="indefinite" begin="6s"/>
+                                <animate attributeName="y" values="225;115" dur="1.5s" repeatCount="indefinite" begin="6s"/>
+                                <animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite" begin="6s"/>
+                            </text>
+                        </g>
+                        
+                        <g>
+                            <text x="440" y="245" font-size="10" fill="#ffffff" font-weight="bold" filter="url(#glow)">11010
+                                <animate attributeName="x" values="440;515" dur="1.5s" repeatCount="indefinite" begin="6.5s"/>
+                                <animate attributeName="y" values="245;235" dur="1.5s" repeatCount="indefinite" begin="6.5s"/>
+                                <animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite" begin="6.5s"/>
+                            </text>
+                        </g>
+                        
+                        <g>
+                            <text x="440" y="265" font-size="10" fill="#ffffff" font-weight="bold" filter="url(#glow)">10110
+                                <animate attributeName="x" values="440;515" dur="1.5s" repeatCount="indefinite" begin="7s"/>
+                                <animate attributeName="y" values="265;355" dur="1.5s" repeatCount="indefinite" begin="7s"/>
+                                <animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite" begin="7s"/>
+                            </text>
+                        </g>
+                    </g>
+                    
+                    <!-- Processing Indicators -->
+                    <g id="processing-indicators">
+                        <!-- Database activity indicator -->
+                        <circle cx="380" cy="250" r="8" fill="none" stroke="#00a6a6" stroke-width="2" opacity="0">
+                            <animate attributeName="r" values="8;20;8" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Visualization pulse -->
+                        <rect x="520" y="80" width="120" height="80" rx="8" fill="none" stroke="#0066cc" stroke-width="1" opacity="0">
+                            <animate attributeName="stroke-width" values="1;3;1" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                        </rect>
+                        
+                        <!-- Robot pulse -->
+                        <rect x="520" y="200" width="120" height="80" rx="8" fill="none" stroke="#ff6b35" stroke-width="1" opacity="0">
+                            <animate attributeName="stroke-width" values="1;3;1" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                            <animate attributeName="opacity" values="0;0.6;0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+                        </rect>
+                        
+                        <!-- Customer Service pulse -->
+                        <rect x="520" y="320" width="120" height="80" rx="8" fill="none" stroke="#8a2be2" stroke-width="1" opacity="0">
+                            <animate attributeName="stroke-width" values="1;3;1" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+                            <animate attributeName="opacity" values="0;0.6;0" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+                        </rect>
+                    </g>
                 </svg>
             </div>
         </section>
